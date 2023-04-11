@@ -6,5 +6,4 @@ dependencies:
   - streamlit
   - matplotlib
   - numpy
-  - re
   - requests
