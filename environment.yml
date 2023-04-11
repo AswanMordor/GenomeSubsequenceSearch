@@ -1,9 +1,0 @@
-name: dev
-dependencies:
-  - python=3.9
-  - pip
-  - pandas
-  - streamlit
-  - matplotlib
-  - numpy
-  - requests
