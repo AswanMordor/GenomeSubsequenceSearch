@@ -5,7 +5,7 @@ import data_fetcher
 import sequence_searcher as proc
 
 st.title('DNA Subsequence Finder')
-st.write('(v0.3-beta)')
+st.write('(v0.3.2-beta)')
 st.subheader('Enter Genome Id and Subsequence Below')
 st.write("using periods to denote 'don't care' bases, ex. T...C as a 5-base subsequence")
 
@@ -30,9 +30,11 @@ def show_results(final_subsequence: str):
             st.pyplot(proc.make_line_plot_of_matches(genome_seq, matches))
 
 
-def valid_subsequence(subseq: str):
+def valid_subsequence():
+    global subsequence
+    subsequence = str.replace(subsequence, "…", "...")
     st.write(proc.COMPLIMENTS.keys())
-    for c in subseq:
+    for c in subsequence:
         st.write(c)
         if c not in proc.COMPLIMENTS.keys():
             with results_container: st.error('Please use only A T G C or . in your subsequence input')
@@ -42,8 +44,8 @@ def valid_subsequence(subseq: str):
 
 with button_container:
     if st.button('Search for Subsequence'):
-        if valid_subsequence(subsequence): show_results(subsequence)
+        if valid_subsequence(): show_results(subsequence)
     if st.button('Search for Complement'):
-        if valid_subsequence(subsequence): show_results(proc.create_compliment(subsequence))
+        if valid_subsequence(): show_results(proc.create_compliment(subsequence))
     if st.button('Search for the Reverse'):
-        if valid_subsequence(subsequence): show_results((proc.create_reverse(subsequence)))
+        if valid_subsequence(): show_results((proc.create_reverse(subsequence)))
