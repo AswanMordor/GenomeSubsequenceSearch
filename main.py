@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-import re
 
 import data_fetcher
 import sequence_searcher as proc
@@ -8,6 +7,7 @@ import sequence_searcher as proc
 st.title('DNA Subsequence Finder')
 st.subheader('Enter Genome Id and Subsequence Below')
 st.write("using periods to denote 'don't care' bases, ex. T...C as a 5-base subsequence")
+st.write('v0.3-beta')
 
 genome_id = st.text_input('Genome Id', '').upper().strip()
 subsequence = st.text_input('Subsequence', '').upper().strip()
