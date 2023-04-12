@@ -31,7 +31,9 @@ def show_results(final_subsequence: str):
 
 
 def valid_subsequence(subseq: str):
+    st.write(proc.COMPLIMENTS.keys())
     for c in subseq:
+        st.write(c)
         if c not in proc.COMPLIMENTS.keys():
             with results_container: st.error('Please use only A T G C or . in your subsequence input')
             return False
