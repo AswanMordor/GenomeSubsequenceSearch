@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import re
 
 import data_fetcher
 import sequence_searcher as proc
@@ -8,8 +9,8 @@ st.title('DNA Subsequence Finder')
 st.subheader('Enter Genome Id and Subsequence Below')
 st.write("using periods to denote 'don't care' bases, ex. T...C as a 5-base subsequence")
 
-genome_id = st.text_input('Genome Id', '').upper()
-subsequence = st.text_input('Subsequence', '').upper()
+genome_id = st.text_input('Genome Id', '').upper().strip()
+subsequence = st.text_input('Subsequence', '').upper().strip()
 
 button_container = st.container()
 results_container = st.container()
@@ -29,10 +30,11 @@ def show_results(final_subsequence: str):
 
 
 with button_container:
+    if not re.search('^[ATGC.]+$', subsequence):
+        st.error('Please use only A T G C or . in your subsequence input')
     if st.button('Search for Subsequence'):
         show_results(subsequence)
     if st.button('Search for Complement'):
         show_results(proc.create_compliment(subsequence))
     if st.button('Search for the Reverse'):
         show_results((proc.create_reverse(subsequence)))
-
