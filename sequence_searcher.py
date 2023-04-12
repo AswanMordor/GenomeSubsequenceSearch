@@ -2,6 +2,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 import re
 
+COMPLIMENTS = {'A': 'T', 'G': 'C', 'T': 'A', 'C': 'G', '.': '.'}
+
+
+def create_reverse(subsequence: str) -> str:
+    return subsequence[::-1]
+
+
+def create_compliment(subsequence: str) -> str:
+    compliment = ''
+    for base in subsequence:  # TODO create some kind of validation for this
+
+        compliment += COMPLIMENTS[base]
+    return compliment
+
 
 def find_matches(genome_seq: str, subseq: str) -> dict:
     matches = [m.start() for m in re.finditer('(?=' + subseq + ')', genome_seq)]

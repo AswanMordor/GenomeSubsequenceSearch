@@ -1,4 +1,5 @@
 import requests
+import streamlit as st
 
 
 class NCBI:
@@ -7,6 +8,7 @@ class NCBI:
     DEFAULT_PARAMS = '&rettype=fasta&retmode=text'
 
 
+@st.cache_data(max_entries=3)
 def fetch_genome_sequence_from_ncbi_nuccore(ncbi_id: str) -> str:
     url = NCBI.BASE_URL + ncbi_id + NCBI.DEFAULT_PARAMS
     try:
