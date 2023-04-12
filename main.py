@@ -31,9 +31,10 @@ def show_results(final_subsequence: str):
 
 
 def valid_subsequence(subseq: str):
-    if not re.search('^[ATGC.]+$', subseq):
-        with results_container: st.error('Please use only A T G C or . in your subsequence input')
-        return False
+    for c in subseq:
+        if c not in proc.COMPLIMENTS.keys():
+            with results_container: st.error('Please use only A T G C or . in your subsequence input')
+            return False
     return True
 
 
