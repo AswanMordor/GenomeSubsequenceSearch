@@ -31,7 +31,7 @@ def show_results(final_subsequence: str):
 with button_container:
     if st.button('Search for Subsequence'):
         show_results(subsequence)
-    if st.button('Search for Compliment'):
+    if st.button('Search for Complement'):
         show_results(proc.create_compliment(subsequence))
     if st.button('Search for the Reverse'):
         show_results((proc.create_reverse(subsequence)))
