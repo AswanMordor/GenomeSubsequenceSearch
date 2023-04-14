@@ -16,6 +16,6 @@ def fetch_genome_sequence_from_ncbi_nuccore(ncbi_id: str) -> str:
         if not response.ok:
             st.error('Unable to fetch the genome with id: ' + ncbi_id)
         content = str(response.content, 'utf-8')
-        return content[content.find('\n') + 1:]
+        return content[content.find('\n') + 1:].replace('\n', '').replace('\r', '')
     except requests.exceptions.HTTPError as err:
         st.error('Unable to fetch the genome with id: ' + ncbi_id)
