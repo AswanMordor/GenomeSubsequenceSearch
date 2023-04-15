@@ -1,9 +1,11 @@
+import matplotlib
 import pandas as pd
 import streamlit as st
 import extra_streamlit_components as stx
 import datetime
 
 from dateutil.relativedelta import relativedelta
+from matplotlib.backends.backend_agg import RendererAgg
 
 import data_fetcher
 import sequence_searcher as proc
@@ -17,7 +19,6 @@ def get_manager():
 
 
 cookie_manager = get_manager()
-cookies = cookie_manager.get_all()
 
 st.title('DNA Subsequence Finder')
 st.write('(v0.4.2-beta (Note: this version uses cookies to save sessions)')
@@ -31,6 +32,11 @@ else cookie_manager.get(SUBSEQUENCES)[1]).upper().strip()
 
 button_container = st.container()
 results_container = st.container()
+
+
+# matplotlib.use("agg")
+#
+# _lock = RendererAgg.lock
 
 
 def update_cookies(subseq: str, g_id: str):
@@ -50,6 +56,7 @@ def show_results(final_subsequence: str):
                 {'Start Positions in Genome': matches.keys(), 'Matched Subsequence': matches.values()})
             st.table(df)
 
+            # with _lock:
             st.pyplot(proc.make_line_plot_of_matches(genome_seq, matches))
 
 
