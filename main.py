@@ -18,7 +18,6 @@ def get_manager():
 
 cookie_manager = get_manager()
 cookies = cookie_manager.get_all()
-st.write(cookies)
 
 st.title('DNA Subsequence Finder')
 st.write('(v0.4.2-beta (Note: this version uses cookies to save sessions)')
